@@ -125,18 +125,23 @@ function result_to_textarea(){
 
 function save_json_data(){
 	var json_obj = {url: $("#display_path").val(), width: $("#preview_width").val(), height: $("#preview_height").val(), 
-						h_offset: $("#horizontal_offset").val(), v_offset: $("#vertical_offset").val() }
+						h_offset: $("#horizontal_offset").val(), v_offset: $("#vertical_offset").val() };
 	localStorage.setItem("json_data", JSON.stringify(json_obj));
 }
 
 function get_json_data(){
 	var str = localStorage.getItem("json_data");
 	var json_obj = JSON.parse(str);
-	$("#display_path").val( json_obj["url"] );
-	$("#preview_width").val( json_obj["width"] );
-	$("#preview_height").val( json_obj["height"] );
-	$("#horizontal_offset").val( json_obj["h_offset"] );
-	$("#vertical_offset").val( json_obj["v_offset"] );
+	if(str == null){
+		json_obj = {url: $("#display_path").val(), width: $("#preview_width").val(), height: $("#preview_height").val(), 
+			h_offset: $("#horizontal_offset").val(), v_offset: $("#vertical_offset").val() };
+	}else{
+		$("#display_path").val( json_obj["url"] );
+		$("#preview_width").val( json_obj["width"] );
+		$("#preview_height").val( json_obj["height"] );
+		$("#horizontal_offset").val( json_obj["h_offset"] );
+		$("#vertical_offset").val( json_obj["v_offset"] );
+	}
 }
 
 function change_preview_size(){
