@@ -18,7 +18,7 @@ sprites_tool
 ブログや他のページに、このツールで作成した画像を使いたい場合は、textareaに表示してあるHTMLのコードをコピー・アンド・ペーストすれば同じ表示になります。
 
 ###デモページ
-<http://projects.watarusekiguchi.com/sprites_tool/sprites_tool.html>
+<http://projects.watarusekiguchi.com/sprites_tool/index.html>
 
 ###ライセンス
 MITです。
@@ -40,7 +40,7 @@ HTML codes are automatically generated. You can use them to show the same size a
  
 ###Demo page
  
- <http://projects.watarusekiguchi.com/sprites_tool/sprites_tool.html>
+ <http://projects.watarusekiguchi.com/sprites_tool/index.html>
 
 ###license
 MIT license
