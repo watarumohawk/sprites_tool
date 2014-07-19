@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html la="ja">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=0.9">     
+		<title>Sprites Tool</title>
+		<!-- Bootstrap -->
+        <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style type="text/css">
+			#contents{margin: 5px;}
+			#gnav .preview_img {display: block;}
+			.preview_img {border: 2px dashed black;}
+			.reset_btn{margin: 8px;}
+			.table .table_centering{vertical-align: middle; text-align: center;}
+			.preview_btn_area{margin: 8px;}
+			.preview_btn_area > div{margin: 5px;}
+			.horizontal_btn{margin: 3px;}
+			textarea{width: 600px; height: 200px;}
+			nav{z-index: 1}
+			#offset_table{z-index: 2;}
+			#original_img_area{position:absolute; z-index:3; top:0px; left:76.5%;}
+			#css_result_val{width: 350px;}
+			.offset_input{width: 50px;}
+			.preview_input{width: 50px;}
+			.vertical_btn{margin-top: 5px;}
+			#overall_original_img{width: 300px; height: auto;}
+			#small_overall_original_img{width: 50px; height: auto;}
+			#display_path{width: 300px;}
+			#path_input_modal{width: 300px;}
+		</style>
+	</head>
+	<body>
+		<div id="contents">
+			<nav class="navbar navbar-default" role="navigation">
+				<div class="container-fluid">
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div class="navbar-nav">
+							<span class="navbar-brand">Image URL :</span>
+						</div>
+						<form class="navbar-form navbar-left" role="search">
+							<div class="form-group">
+								<input type="text" id="display_path" class="form-control" readonly="readonly">
+							</div>
+						</form>
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Change URL</button>
+						<span id="small_img_area" class="btn"></span>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title" id="myModalLabel" class="">Change URL</h4>
+						</div>
+						<div class="modal-body">
+							<form role="search">
+								<div class="form-group">
+									<input type="text" id="path_input_modal" class="form-control">
+								</div>
+						</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<form>
+				<!-- top-right image -->
+				<div id="original_img_area" class="text-right"></div>
+				<table id="offset_table" class="table table-bordered">
+					<thead><th class="table_centering"><span>Width</span></th><th></th><th class="table_centering"><span>Height</span></th></thead>
+					<tbody>
+						<tr>
+							<td class="table_centering">
+								<div id="width_btn_area" class="preview_btn_area">
+									<div>
+										<button type="button" class="btn preview_width_btn btn-info btn-xs" value="5">+5px</button>
+										<button type="button" class="btn preview_width_btn btn-info btn-xs" value="10">+10px</button>
+									</div>
+									<div>
+										<button type="button" class="btn preview_width_btn btn-info btn-xs" value="-5">-5px</button>
+										<button type="button" class="btn preview_width_btn btn-info btn-xs" value="-10">-10px</button>
+									</div>
+								</div>
+							</td>
+							<td class="table_centering">
+								<div>
+									<button type="button" class="btn vertical_btn btn-xs" id="vertical_p1_btn" value="1">↑ 1px</button>
+									<button type="button" class="btn vertical_btn btn-xs" id="vertical_p10_btn" value="10">↑ 10px</button>
+									<button type="button" class="btn vertical_btn btn-xs" id="vertical_p100_btn" value="100">↑ 100px</button>
+								</div>
+								<div>
+									<button type="button" class="btn vertical_btn btn-xs" id="vertical_m1_btn" value="-1">↓ 1px</button>
+									<button type="button" class="btn vertical_btn btn-xs" id="vertical_m10_btn" value="-10">↓ 10px</button>
+									<button type="button" class="btn vertical_btn btn-xs" id="vertical_m100_btn" value="-100">↓ 100px</button>
+								</div>
+							</td>
+							<td class="table_centering">
+								<div id="height_btn_area" class="preview_btn_area">
+									<div>
+										<button type="button" class="btn preview_height_btn btn-info btn-xs" value="5">+5px</button>
+										<button type="button" class="btn preview_height_btn btn-info btn-xs" value="10">+10px</button>
+									</div>
+									<div>
+										<button type="button" class="btn preview_height_btn btn-info btn-xs" value="-5">-5px</button>
+										<button type="button" class="btn preview_height_btn btn-info btn-xs" value="-10">-10px</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="table_centering">
+								<div>
+									<button type="button" class="btn horizontal_btn btn-xs" id="horizontal_p1_btn" value="1"><< 1px</button>
+								</div>
+								<div>
+									<button type="button" class="btn horizontal_btn btn-xs" id="horizontal_p10_btn" value="10"><< 10px</button>
+								</div>
+								<div>
+									<button type="button" class="btn horizontal_btn btn-xs" id="horizontal_p100_btn" value="100"><< 100px</button>
+								</div>
+							</td>
+							<td class="table_centering">
+								<div id="gnav" class="img_area gnav_img">
+									<span class="preview_img"></span>
+								</div>
+							</td>
+							<td class="table_centering">
+								<div>
+									<button type="button" class="btn horizontal_btn btn-xs" id="horizontal_m1_btn" value="-1">1px >></button>
+								</div>
+								<div>
+									<button type="button" class="btn horizontal_btn btn-xs" id="horizontal_m10_btn" value="-10">10px >></button>
+								</div>
+								<div>
+									<button type="button" class="btn horizontal_btn btn-xs" id="horizontal_m100_btn" value="-100">100px >></button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" class="table_centering">
+								<div class="css_input_area">
+									<span id="preview_width_text"><strong>Width : </strong><input type="text" id="preview_width" class="preview_input"> px</span>
+									<button type="button" id="reset_preview_width_btn" class="btn reset_btn btn-xs" value="0">reset</button>
+									<span id="preview_height_text"><strong>Height : </strong><input type="text" id="preview_height" class="preview_input"> px</span>
+									<button type="button" id="reset_preview_height_btn" class="btn reset_btn btn-xs" value="0">reset</button>
+									<span><strong>Horizontal offset : </strong><input type="text" id="horizontal_offset" class="offset_input"> px</span>
+									<button type="button" id="reset_horizontal_btn" class="btn reset_btn btn-xs" value="0">reset</button>
+									<span><strong>Vertical offset : </strong><input type="text" id="vertical_offset" class="offset_input"> px</span>
+									<button type="button" id="reset_vertical_btn" class="btn reset_btn btn-xs" value="0">reset</button>
+								</div>
+								<div>
+									<span><strong>Width Height H-offset V-offset : </strong></span>
+									<input type="text" id="css_result_val">
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>			
+			<table id="html_source_table" class="table">
+				<thead><th>HTML</th></thead>
+				<tbody>
+					<tr>
+						<td>
+							<textarea id="html_textarea" class="source_textarea"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./sprites_tool.js"></script>
+	</body>
+</html>
