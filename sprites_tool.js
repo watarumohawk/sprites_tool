@@ -1,6 +1,6 @@
 /*
-* 
-* License: MIT license 
+*
+* License: MIT license
 * This script depends on jQuery
 *
 *
@@ -10,8 +10,10 @@ $(function(){
 	// image's default URL
 	var img_path = "http://www.pakutaso.com/assets_c/2014/05/PAK86_smonitatocode20140517500-thumb-900x600-4606.jpg";
 	// gnav's default size
-	var preview_img_width = "680";
-	var preview_img_height = "160";
+	var preview_img_width = 680;
+	var preview_img_height = 160;
+	var horizontal_img_offset = 0;
+	var vertical_img_offset = 0;
 
 	$(".horizontal_btn").addClass("btn horizontal_btn btn-success");
 	$(".vertical_btn").addClass("btn vertical_btn btn-success");
@@ -28,10 +30,10 @@ $(function(){
 	// default values
 	$("#preview_width").val(preview_img_width);
 	$("#preview_height").val(preview_img_height);
-	// Width Height H-offset V-offset 
+	// Width Height H-offset V-offset
 	show_css_result("preview_width", "preview_height", "horizontal_offset", "vertical_offset");
 	// output from storage
-	get_json_data();
+	get_json_data(preview_img_width, preview_img_height, horizontal_img_offset, vertical_img_offset);
 	change_img();
 	change_preview_size();
 	trans_val();
@@ -118,29 +120,29 @@ function result_to_textarea(){
 	textarea_css_arry.push(".preview_img{width:"+ preview_img_width +"; height:"+ preview_img_height +"}");
 	var result_text = "<style>" + "\n" +textarea_css_arry[0] + "\n" + textarea_css_arry[1] + "\n"
 						+"</style>"
-						+ "\n\n" 
+						+ "\n\n"
 						+ "<div id='gnav' class='img_area gnav_img'>" + "\n" +"<span class='preview_img'></span>"+ "\n" +"</div>";
 	$("#html_textarea").val(result_text);
 }
 
 function save_json_data(){
-	var json_obj = {url: $("#display_path").val(), width: $("#preview_width").val(), height: $("#preview_height").val(), 
+	var json_obj = {url: $("#display_path").val(), width: $("#preview_width").val(), height: $("#preview_height").val(),
 						h_offset: $("#horizontal_offset").val(), v_offset: $("#vertical_offset").val() };
 	localStorage.setItem("json_data", JSON.stringify(json_obj));
 }
 
-function get_json_data(){
+function get_json_data(preview_width, preview_height, horizontal_offset, vertical_offset){
 	var str = localStorage.getItem("json_data");
 	var json_obj = JSON.parse(str);
 	if(str == null){
-		json_obj = {url: $("#display_path").val(), width: $("#preview_width").val(), height: $("#preview_height").val(), 
+		json_obj = {url: $("#display_path").val(), width: $("#preview_width").val(), height: $("#preview_height").val(),
 			h_offset: $("#horizontal_offset").val(), v_offset: $("#vertical_offset").val() };
 	}else{
 		$("#display_path").val( json_obj["url"] );
-		$("#preview_width").val( json_obj["width"] );
-		$("#preview_height").val( json_obj["height"] );
-		$("#horizontal_offset").val( json_obj["h_offset"] );
-		$("#vertical_offset").val( json_obj["v_offset"] );
+		isNaN(json_obj["width"]) ? $("#preview_width").val(preview_width) : $("#preview_width").val(json_obj["width"]);
+		isNaN(json_obj["height"]) ? $("#preview_height").val(preview_height) : $("#preview_height").val(json_obj["height"]);;
+		isNaN(json_obj["h_offset"]) ? $("#horizontal_offset").val(horizontal_offset) : $("#horizontal_offset").val(json_obj["h_offset"]) ;
+		isNaN(json_obj["v_offset"]) ? $("#vertical_offset").val(vertical_offset) : $("#vertical_offset").val(json_obj["v_offset"]);
 	}
 }
 
@@ -182,7 +184,7 @@ function trans_val(){
 	var horizon = $("#horizontal_offset").val();
 	var trans_val = (horizon + "px" + " " + vertical + "px");
 	$("#gnav .preview_img").css("background-position", trans_val);
-	//Width Height H-offset V-offset 
+	//Width Height H-offset V-offset
 	show_css_result("preview_width", "preview_height", "horizontal_offset", "vertical_offset");
 	save_json_data();
 }
