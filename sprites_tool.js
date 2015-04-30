@@ -8,7 +8,7 @@
 
 $(function(){
 	// image's default URL
-	var img_path = "http://www.pakutaso.com/assets_c/2014/05/PAK86_smonitatocode20140517500-thumb-900x600-4606.jpg";
+	var img_path = "https://www.pakutaso.com/assets_c/2014/05/PAK86_codeing20140517500-thumb-815xauto-4601.jpg";
 	// gnav's default size
 	var preview_img_width = 680;
 	var preview_img_height = 160;
